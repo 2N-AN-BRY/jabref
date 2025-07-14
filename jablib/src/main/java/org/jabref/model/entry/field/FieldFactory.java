@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.collections;
 
 import org.jabref.logic.preferences.JabRefCliPreferences;
 import org.jabref.model.entry.types.EntryType;
@@ -76,14 +77,16 @@ public class FieldFactory {
         result.add(StandardField.LANGUAGEID);
         return result;
     }
-
-    public static OrFields parseOrFields(String fieldNames) {
-        Set<Field> fields = Arrays.stream(fieldNames.split(FieldFactory.FIELD_OR_SEPARATOR))
-                                  .filter(StringUtil::isNotBlank)
-                                  .map(FieldFactory::parseField)
-                                  .collect(Collectors.toCollection(LinkedHashSet::new));
-        return new OrFields(fields);
+public static OrFields parseOrFields(String fieldNames) {
+    if (StringUtil.isBlank(fieldNames)) {
+        return new OrFields(Collections.emptySet());
     }
+    Set<Field> fields = Arrays.stream(fieldNames.split(FIELD_OR_SEPARATOR))
+        .filter(StringUtil::isNotBlank)
+        .map(FieldFactory::parseField)
+        .collect(Collectors.toCollection(LinkedHashSet::new));
+    return new OrFields(fields);
+}
 
     public static SequencedSet<OrFields> parseOrFieldsList(String fieldNames) {
         return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
