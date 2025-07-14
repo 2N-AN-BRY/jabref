@@ -38,18 +38,19 @@ public class FieldFactory {
     }
 
     public static String serializeOrFields(OrFields fields) {
-        return fields.getFields().stream()
-                     .map(field -> {
-                         if (field instanceof UnknownField unknownField) {
-                             // In case a user has put a user-defined field, the casing of that field is kept
-                             return unknownField.getDisplayName();
-                         } else {
-                             // In all fields known to JabRef, the name is used - JabRef knows better than the user how to case the field
-                             return field.getName();
-                         }
-                     })
-                     .collect(Collectors.joining(FIELD_OR_SEPARATOR));
+    return fields.getFields().stream()
+        .map(FieldFactory::getFieldDisplayName)
+        .collect(Collectors.joining(FIELD_OR_SEPARATOR));
+}
+
+private static String getFieldDisplayName(Field field) {
+    if (field instanceof UnknownField unknownField) {
+        return unknownField.getDisplayName();
+    } else {
+        return field.getName();
     }
+}
+
 
     public static String serializeOrFieldsList(Set<OrFields> fields) {
         return fields.stream().map(FieldFactory::serializeOrFields).collect(Collectors.joining(DELIMITER));
