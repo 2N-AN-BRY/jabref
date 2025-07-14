@@ -82,12 +82,21 @@ public static OrFields parseOrFields(String fieldNames) {
     if (StringUtil.isBlank(fieldNames)) {
         return new OrFields(Collections.emptySet());
     }
+
+    /**
+ * Parses a string containing one or more field names separated by FIELD_OR_SEPARATOR (e.g. "author/editor")
+ * and returns an OrFields object representing the list of fields.
+ *
+ * Unknown field names will be wrapped in UnknownField.
+ */
+
     Set<Field> fields = Arrays.stream(fieldNames.split(FIELD_OR_SEPARATOR))
         .filter(StringUtil::isNotBlank)
         .map(FieldFactory::parseField)
         .collect(Collectors.toCollection(LinkedHashSet::new));
     return new OrFields(fields);
 }
+ main
 
     public static SequencedSet<OrFields> parseOrFieldsList(String fieldNames) {
         return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
