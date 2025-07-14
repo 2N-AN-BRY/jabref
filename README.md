@@ -64,6 +64,8 @@ You can also run JabKit using docker:
 ```terminal
 docker run ghcr.io/jabref/jabkit:edge --help
 ```
+> Note: JabRef requires Java 17 or newer to build successfully. Please ensure you have Java 17+ installed.
+
 
 ## Bug Reports, Suggestions, Other Feedback
 
