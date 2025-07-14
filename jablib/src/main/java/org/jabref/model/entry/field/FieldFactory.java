@@ -84,6 +84,13 @@ public class FieldFactory {
                                   .collect(Collectors.toCollection(LinkedHashSet::new));
         return new OrFields(fields);
     }
+    /**
+ * Parses a string containing one or more field names separated by FIELD_OR_SEPARATOR (e.g. "author/editor")
+ * and returns an OrFields object representing the list of fields.
+ *
+ * Unknown field names will be wrapped in UnknownField.
+ */
+
 
     public static SequencedSet<OrFields> parseOrFieldsList(String fieldNames) {
         return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
