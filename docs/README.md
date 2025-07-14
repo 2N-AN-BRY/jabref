@@ -37,3 +37,8 @@ act --rm --platform ubuntu-latest=fwilhe2/act-runner:latest -W .github/workflows
 ```
 
 That command uses [act](https://github.com/nektos/act), which brings GitHub actions execution to the developer machine.
+
+## Useful Tip
+
+The official JabRef browser plugin works with Firefox, Chrome, Edge, and Vivaldi. It allows you to import bibliographic references directly from websites into JabRef with a single click.
+

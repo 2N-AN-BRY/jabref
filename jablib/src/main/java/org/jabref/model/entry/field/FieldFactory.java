@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.collections;
 
 import org.jabref.logic.preferences.JabRefCliPreferences;
 import org.jabref.model.entry.types.EntryType;
@@ -38,18 +39,19 @@ public class FieldFactory {
     }
 
     public static String serializeOrFields(OrFields fields) {
-        return fields.getFields().stream()
-                     .map(field -> {
-                         if (field instanceof UnknownField unknownField) {
-                             // In case a user has put a user-defined field, the casing of that field is kept
-                             return unknownField.getDisplayName();
-                         } else {
-                             // In all fields known to JabRef, the name is used - JabRef knows better than the user how to case the field
-                             return field.getName();
-                         }
-                     })
-                     .collect(Collectors.joining(FIELD_OR_SEPARATOR));
+    return fields.getFields().stream()
+        .map(FieldFactory::getFieldDisplayName)
+        .collect(Collectors.joining(FIELD_OR_SEPARATOR));
+}
+
+private static String getFieldDisplayName(Field field) {
+    if (field instanceof UnknownField unknownField) {
+        return unknownField.getDisplayName();
+    } else {
+        return field.getName();
     }
+}
+
 
     public static String serializeOrFieldsList(Set<OrFields> fields) {
         return fields.stream().map(FieldFactory::serializeOrFields).collect(Collectors.joining(DELIMITER));
@@ -76,14 +78,11 @@ public class FieldFactory {
         result.add(StandardField.LANGUAGEID);
         return result;
     }
-
-    public static OrFields parseOrFields(String fieldNames) {
-        Set<Field> fields = Arrays.stream(fieldNames.split(FieldFactory.FIELD_OR_SEPARATOR))
-                                  .filter(StringUtil::isNotBlank)
-                                  .map(FieldFactory::parseField)
-                                  .collect(Collectors.toCollection(LinkedHashSet::new));
-        return new OrFields(fields);
+public static OrFields parseOrFields(String fieldNames) {
+    if (StringUtil.isBlank(fieldNames)) {
+        return new OrFields(Collections.emptySet());
     }
+
     /**
  * Parses a string containing one or more field names separated by FIELD_OR_SEPARATOR (e.g. "author/editor")
  * and returns an OrFields object representing the list of fields.
@@ -91,6 +90,13 @@ public class FieldFactory {
  * Unknown field names will be wrapped in UnknownField.
  */
 
+    Set<Field> fields = Arrays.stream(fieldNames.split(FIELD_OR_SEPARATOR))
+        .filter(StringUtil::isNotBlank)
+        .map(FieldFactory::parseField)
+        .collect(Collectors.toCollection(LinkedHashSet::new));
+    return new OrFields(fields);
+}
+ main
 
     public static SequencedSet<OrFields> parseOrFieldsList(String fieldNames) {
         return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
