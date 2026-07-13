@@ -52,6 +52,9 @@ The [latest stable release is available at FossHub](https://downloads.jabref.org
 
 Please see our [Installation Guide](https://docs.jabref.org/installation).
 
+Note: JabRef requires Java 17 or newer to build successfully. (#HSFDPMUW)
+
+
 ## JabKit
 
 JabRef offers a CLI application.
