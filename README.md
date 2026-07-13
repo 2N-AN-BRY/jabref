@@ -2,6 +2,8 @@
 
 JabRef is an open-source, cross-platform citation and reference management tool.
 
+JabRef requires Java 21 or newer for building and running. (#HSFDPMUW)
+
 Stay on top of your literature: JabRef helps you to collect and organize sources, find the paper you need and discover the latest research.
 
 ![main table](docs/images/jabref-mainscreen.png)
