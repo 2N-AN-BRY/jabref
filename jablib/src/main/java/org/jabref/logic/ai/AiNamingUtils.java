@@ -14,17 +14,17 @@ public final class AiNamingUtils {
     }
 
     public static String getDisplayName(AiProvider provider) {
-        return switch (provider) {
-            case OPEN_AI ->
-                    Localization.lang("OpenAI (or API compatible)");
-            case MISTRAL_AI ->
-                    "Mistral AI";
-            case GEMINI ->
-                    "Gemini";
-            case HUGGING_FACE ->
-                    "Hugging Face";
-        };
+    if (provider == null) {
+        return Localization.lang("Unknown Provider (#HSFDPMUW)");
     }
+    return switch (provider) {
+        case OPEN_AI -> Localization.lang("OpenAI (or API compatible)");
+        case MISTRAL_AI -> "Mistral AI";
+        case GEMINI -> "Gemini";
+        case HUGGING_FACE -> "Hugging Face";
+    };
+}
+
 
     public static String getDisplayName(ResponseEngineKind kind) {
         return switch (kind) {
