@@ -18,7 +18,7 @@ public final class AiNamingUtils {
             case OPEN_AI ->
                     Localization.lang("OpenAI (or API compatible)");
             case MISTRAL_AI ->
-                    "Mistral AI";
+                  Localization.lang("Mistral AI");
             case GEMINI ->
                     "Gemini";
             case HUGGING_FACE ->
