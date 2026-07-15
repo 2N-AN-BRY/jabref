@@ -28,6 +28,8 @@ Examples of behavior that contribute to a positive environment include:
 * Acknowledging feedback and responding thoughtfully
 * Being honest about what you have done, what you understand, and what you do not
 * Acknowledging that JabRef as a real open-source project used by people across the world, and not treating it as an exercise submission system
+* We encourage all contributors to communicate respectfully and constructively.
+
 
 Examples of unacceptable behavior include:
 
