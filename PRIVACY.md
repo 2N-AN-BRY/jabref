@@ -1,5 +1,10 @@
 # Privacy Policy
 
+We respect your privacy and are committed to protecting your personal data.
+
+JabRef does not collect personal data beyond what is required for basic functionality. (#HSFDPMUW)
+
+
 Last updated: 2024-08-06
 
 Your privacy is a fundamental right that JabRef e.V. respects and supports.
