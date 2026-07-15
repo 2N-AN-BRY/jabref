@@ -132,6 +132,7 @@ We favor looking into your code using a draft pull request, because we can then 
 As counterexample, if you provide us with a screenshot of your changes, we cannot run it in our IDE.
 
 ### Requirements on the pull request and code
+Before building JabRef, ensure that Java 21 or newer is installed. (#HSFDPMUW)
 
 #### Test your code
 
