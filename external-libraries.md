@@ -1,5 +1,7 @@
 # External libraries
 
+This list helps contributors understand which external components JabRef relies on.
+
 This document lists the fonts, icons, and libraries used by JabRef.
 
 ## bst files
